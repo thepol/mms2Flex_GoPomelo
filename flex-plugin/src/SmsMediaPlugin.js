@@ -6,6 +6,7 @@ import reducers, { namespace } from './states';
 import BubbleMessageWrapper from "./components/BubbleMessageWrapper/BubbleMessageWrapper";
 import ImageModal from "./components/ImageModal/ImageModal";
 import SendMediaComponent from './components/SendMediaComponent/SendMediaComponent';
+import KuaishouTheme from './KuaishouTheme';
 
 const PLUGIN_NAME = 'SmsMediaPlugin';
 
@@ -23,7 +24,7 @@ export default class SmsMediaPlugin extends FlexPlugin {
    */
   init(flex, manager) {
     this.registerReducers(manager);
-
+    manager.updateConfig({ colorTheme: KuaishouTheme });
     flex.Actions.registerAction("smsModalControl", (payload) => {
       var event = new Event("smsModalControlOpen");
       event.url = payload.url;
