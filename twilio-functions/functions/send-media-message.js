@@ -7,12 +7,12 @@ exports.handler = TokenValidator(async function(context, event, callback) {
   response.appendHeader('Content-Type', 'application/json');
   response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  const { to, mediaUrl } = event;
+  const { to, mediaUrl, twilioNumber } = event;
   const channel = event.channel && event.channel.toLowerCase();
   const client = context.getTwilioClient();
 
   const channelsFrom = {
-    'chat-whatsapp': `whatsapp:${context.TWILIO_WHATSAPP_NUMBER}`,
+    'chat-whatsapp': twilioNumber,
     'chat-sms': context.TWILIO_SMS_NUMBER
   };
 
